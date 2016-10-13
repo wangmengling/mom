@@ -1,0 +1,61 @@
+// @media screen
+.login {
+    background-image: url('/images/Bitmap.png');
+    width:100%;
+    // height:100%;
+    min-height: 740px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    >.loginBoard{
+        display: flex;
+        flex-direction: column;
+        border-radius:20px;
+        width: 650px;
+        height: 400px;
+        background-color: white;
+        opacity: 0.8;
+        >.loginTitle{
+            flex: 1;
+            align-self: center;
+            display: flex;
+            >.loginTitleFont{
+                margin-top: 20;
+                width: 100%;
+                font-size: 36px;
+                align-self: center;
+            }
+        }
+        >.inputContent{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            align-items: center;
+            width: 100%;
+            border-radius: 5;
+            >.inputText{
+                width: 50%;
+                height: 40px;
+                border-radius: 5;
+            }
+        }
+        >.commit{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            align-items: center;
+            width: 100%;
+            border-radius: 5;
+            >.commitButton{
+                width: 50%;
+                height: 40px;
+                border-radius: 5;
+                font-size: 18px;
+                background-color: #50E3C2;
+                border-color: #50E3C2;
+            }
+        }
+    }
+}
