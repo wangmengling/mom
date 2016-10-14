@@ -29,7 +29,7 @@ module.exports = {
   module: {
     loaders: [//定义一系列加载器
             {test: /\.html$/,loader: "html"},  /*html*/
-            {test: /\.js$/, loader: "babel"},      /*es6 to es5*/
+            {test: /\.js$/, loader: "babel",exclude: /node_modules/},      /*es6 to es5*/
             {test: /\.jsx$/,loader: 'jsx-loader'},    /*jsx to js,es5 to es6*/
             {test: /\.css$/, loader: 'style-loader!css-loader'},                      /*css to css*/
             {test: /\.(jpg|png)$/, loader: "url?limit=8192"},  //limit=8192表示图片大小单位是k  小于这个值走内联大于这个值走外联             /*images 打包*/

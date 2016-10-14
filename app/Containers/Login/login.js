@@ -3,7 +3,8 @@ import './login.scss'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actionsAll from '../../Actions/Login';
+
+import actionsAll from '../../Actions/user';
 
 class Login extends Component {
 
@@ -14,6 +15,7 @@ class Login extends Component {
       username:"",
       password:""
     }
+
    }
   // handleChange(name,event) {
   //   console.log(name)
@@ -35,19 +37,12 @@ class Login extends Component {
         username:this.state.username,
         password:this.state.password
       }
-      // console.log(this)
       this.props.actions.login(params)
   }
 
     render(){
         let { state ,actions} = this.props;
-
-        // if (state.username) {
-        //   this.context.router.url({
-        //       pathname: '/'
-        //   });
-        // }
-
+        // console.log(this.state)
         return(
             <div className="login">
                 <div className="loginBoard">
@@ -55,12 +50,12 @@ class Login extends Component {
                         <font className="loginTitleFont">SIGN IN</font>
                     </div>
                     <div className="inputContent">
-                        <input  className="inputText" value={this.state.username} onChange={this.handleChange}   placeholder="用户名"/>
-                        <input className="inputText"  value={this.state.password} onChange={this.handleChangePassWord} placeholder="密码"/>
+                        <input   className="inputText" value={this.state.username} onChange={this.handleChange}   placeholder="用户名"/>
+                        <input  className="inputText"  value={this.state.password} onChange={this.handleChangePassWord} placeholder="密码"/>
                     </div>
                     <div className="commit">
-                    {state.username}个苹果
-                        <button  onClick={this.commit} className="commitButton">登录</button>
+                    个苹果
+                    <button  onClick={this.commit} className="commitButton">登录</button>
                     </div>
                 </div>
             </div>
@@ -69,9 +64,9 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-    const { login } = state
+    const { user } = state
     return {
-        state: login
+        state: user
     }
 }
 

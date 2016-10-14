@@ -2,13 +2,21 @@ import { combineReducers } from 'redux'
 import todos from './Todos'
 import visibilityFilter from './VisibilityFilter'
 import appleBusket from './appleBuskReducer'
-import login from './Login'
+import user from './user'
+import shop from './Shop'
 
-const todoApp = combineReducers({
+// const todoApp = combineReducers({
+//   todos,
+//   visibilityFilter,
+//   appleBusket,
+//   login,
+//   // shop
+// })
+
+// export default todoApp
+module.exports = { 
   todos,
   visibilityFilter,
   appleBusket,
-  login
-})
-
-export default todoApp
+  user
+ }

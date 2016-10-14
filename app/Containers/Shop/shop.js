@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-
-export default class Shop extends Component {
+import { connect } from 'react-redux';
+class Shop extends Component {
     render(){
+        let { state } = this.props;
         return(
             <div>
                 测试
@@ -10,3 +11,19 @@ export default class Shop extends Component {
         );
     }
 }
+
+
+function mapStateToProps(state) {
+    const { shop } = state
+    return {
+        state: shop
+    }
+}
+
+// function buildActionDispatcher(dispatch) {
+//   return {
+//       actions: bindActionCreators(actionsAll, dispatch)
+//     }
+// }
+
+export default connect(mapStateToProps,null)(Shop);

@@ -9,31 +9,24 @@ import Login from './Containers/Login';
 import AdminLayout from './Containers/Admin/Layout';
 import AdminWelcome from './Containers/Admin/Welcome';
 import AdminShop from './Containers/Shop';
+import Foo from './Containers/Foo';
 
 import NotFound from './containers/NotFound';
 
 
 
-import { UserIsAuthenticated , UserIsAdmin ,VisibleOnlyAdmin} from './Utils/wrappers'
-// import { UserAuthWrapper } from 'redux-auth-wrapper'
-// import { routerActions } from 'react-router-redux'
-// const UserIsAuthenticated = UserAuthWrapper({
-//   authSelector: state => state.user,
-//   wrapperDisplayName: 'VisibleOnlyAdmin',
-//   // predicate: user => user.isAdmin,
-//   failureRedirectPath: '/',
-//   FailureComponent: null
-// })
+import { UserIsAuthenticated,UserIsNotAuthenticated} from './Utils/wrappers'
+
 
 export default ()=>{
   return (
     <Router>
-      <Route path="/" component={App}>
-        <Route path="/login" component={Login}/>
+      <Route path="/">
+        <IndexRoute component={UserIsNotAuthenticated(Login)} />
       </Route>
-      <Route path="/admin" component={VisibleOnlyAdmin(App)}>
-        <IndexRoute component={VisibleOnlyAdmin(AdminWelcome)} />
-        <Route path="shop" component={VisibleOnlyAdmin(AdminShop)} />
+      <Route path="/admin" component={App}>
+        <IndexRoute component={UserIsAuthenticated(AdminWelcome)} />
+        <Route path="shop" component={UserIsAuthenticated(AdminShop)} />
       </Route>
       <Route path="*" component={NotFound} status={404} />
     </Router>

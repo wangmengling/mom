@@ -20,6 +20,8 @@ export default class App extends Component {
           {' '}
           <Link to="/">Home</Link>
           {' '}
+          <Link to="/foo">Foo</Link>
+          {' '}
           <Link to="/admin">{'admin (Login Required)'}</Link>
           {' '}
           <Link to="/admin/shop">{'shop (Login Required)'}</Link>

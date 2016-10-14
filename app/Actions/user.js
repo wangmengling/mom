@@ -10,7 +10,9 @@ let actions = {
     //注意这里需要 () => ... , 不然 pickAppleAction 不是一个actionCreator, 而是一个thunk
     login: (body) => (dispatch, getState) => {
         //如果正在摘苹果，则结束这个thunk, 不执行摘苹果
-        console.log(body)
+        // console.log(body)
+        
+        // dispatch(actions.loginIn())
         fetch('http://localhost:3000/users/login', {
             method: 'POST',
             // mode:"no-cors",
@@ -23,11 +25,15 @@ let actions = {
         .then(function(response) {
             return response.json()
         }).then(function(json) {
+            console.log(json.data)
             dispatch(actions.loginSuccess(json.data))
         }).catch(function(ex) {
             console.log('parsing failed', ex)
         })
     },
+    loginIn:() => ({
+        type: 'LOGIN_IN'
+    }),
     loginSuccess: userInfo => ({
         type: 'LOGIN_SUCCESS',
         payload: userInfo
