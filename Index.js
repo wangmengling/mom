@@ -42,27 +42,27 @@ app.use(webpackHotMiddleware(compiler));
 //     next();  
 // }); 
 
-app.get("/login", function(req, res) {
+// app.get("/login", function(req, res) {
+//   res.sendFile(__dirname + '/static/index.html');
+// });
+app.use(Express.static(path.join(__dirname, 'static')));
+app.get("/*", function(req, res) {
   res.sendFile(__dirname + '/static/index.html');
 });
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/static/welcome/index.html');
-});
+// app.get("/users", function(req, res) {
+//   // res.sendFile(__dirname + '/static/index.html');
+//   axios.get('http://localhost:3000/users')
+//   .then(function (response) {
+//     console.log(response.data);
+//     res.json(response.data)
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// });
 
-app.get("/users", function(req, res) {
-  // res.sendFile(__dirname + '/static/index.html');
-  axios.get('http://localhost:3000/users')
-  .then(function (response) {
-    console.log(response.data);
-    res.json(response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-});
 
-app.use(Express.static(path.join(__dirname, 'static')));
 
 app.listen(port, (error) => {
   if (error) {

@@ -1,3 +1,3 @@
-import Login from "./login"
+import Shop from "./shop"
 
-export default Login
+export default Shop

@@ -1,4 +1,4 @@
-import reduxDevTools from  'redux-devtools'
+import { createDevTools } from 'redux-devtools'
 // import LogMonitor from 'redux-devtools-log-monitor'
 // import DockMonitor from 'redux-devtools-dock-monitor'
 
@@ -24,6 +24,9 @@ const reducer = combineReducers({
   ...reducers,
   routing: routerReducer
 })
+
+
+
 //-------------------------------------------------------------------------------------compose START
 // 生产环境中，我们希望只使用 middleware。
 // 而在开发环境中，我们还希望使用一些 redux-devtools 提供的一些 store 增强器。
