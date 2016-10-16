@@ -24,7 +24,7 @@ export default ()=>{
       <Route path="/">
         <IndexRoute component={UserIsNotAuthenticated(Login)} />
       </Route>
-      <Route path="/admin" component={App}>
+      <Route path="/admin" component={AdminLayout}>
         <IndexRoute component={UserIsAuthenticated(AdminWelcome)} />
         <Route path="shop" component={UserIsAuthenticated(AdminShop)} />
       </Route>

@@ -26,6 +26,7 @@ let actions = {
             return response.json()
         }).then(function(json) {
             console.log(json.data)
+            localStorage.setItem('token', JSON.stringify(json.data))
             dispatch(actions.loginSuccess(json.data))
         }).catch(function(ex) {
             console.log('parsing failed', ex)

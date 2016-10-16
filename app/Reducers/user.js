@@ -1,6 +1,6 @@
 const defaultState = {
     // data:{username:"wangmengling"},
-    data:null,
+    data:JSON.parse(localStorage.getItem('token')) || null,
     // username:"wangmengling",
     isLoading: false
 }
