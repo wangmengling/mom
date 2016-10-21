@@ -1,45 +1,50 @@
 import React, { Component, PropTypes } from 'react';
 import './Layout.scss'
 
+import {cyan500, cyan600, cyan700,deepOrange500} from 'material-ui/styles/colors';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+
+import Badge from 'material-ui/Badge';
+import IconButton from 'material-ui/IconButton';
+import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+
+const muiTheme = getMuiTheme({
+            palette: {
+                textColor: cyan500,
+            },
+            appBar: {
+                height: 50,
+            },
+        });
+
+import Menu from '../../../Components/Menu'
+import TabsExampleSimple from '../../../Components/TabsExampleSimple'
+
+
+
+
 export default class Layout extends Component {
     static propTypes = {
         children: PropTypes.node
     };
+    
     render(){
+        
         return(
             <div className='LayoutRoot'>
-                <div className='LayoutTop'>
-                    <div className='TopLogo'>
-                        <img src="/images/logo.png" />
-                    </div>
-                    <div className='TopUser'>
-                        <div className='TopSearch'>
-
-                        </div>
-                        <div className='TopSetting'>
-                            <img src='/images/message.png' />
-                        </div>
-                        <div className='TopSetting'>
-                            <img src='/images/setting.png' />
-                        </div>
-                    </div>
-                </div>
-                <div className='LayoutContent'>
-                    <div className='ContentLeft'>
-                        <div className='LeftCatagoryDefault'>
-                            Home
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <div>
+                        <div>
+                            <AppBar title="My AppBar" />
                         </div>
                         <div>
-                            User
+                            <Menu />
                         </div>
-                        <div>
-                            Store
-                        </div>
-                    </div>
-                    <div className='ContentRight'>
-                        {this.props.children}
-                    </div>
-                </div>
+                    </div>  
+                </MuiThemeProvider>
             </div>
         );
     }

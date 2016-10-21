@@ -7,6 +7,10 @@ import thunkMiddleware from 'redux-thunk';
 import { syncHistoryWithStore, routerReducer , routerMiddleware} from 'react-router-redux'
 import { UserAuthWrapper } from 'redux-auth-wrapper' // user auth
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+window.React = React;
+injectTapEventPlugin();
 
 //-------------------------------------------------reducers start
 import reducers from './Reducers'
