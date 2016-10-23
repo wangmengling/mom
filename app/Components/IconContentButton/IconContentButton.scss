@@ -1,0 +1,24 @@
+.IconContent {
+    border-radius: 5px;
+    background-color: white;
+    width: 280px;
+    height: 100px;
+    display: flex;
+    .Icon {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+        background-color: #ff6c60;
+        border-radius: 5px;
+    }
+    .Content {
+        width: 180px;
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+        color: #c6cad6;
+
+    }
+}
