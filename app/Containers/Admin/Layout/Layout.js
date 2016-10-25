@@ -57,6 +57,9 @@ class Master extends Component {
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
         top: 0,
       },
+      appBarIconLeft: {
+          marginLeft:100
+      },
       iconButtons: {
           padding:0,
           margin:'0 auto',
@@ -100,6 +103,10 @@ class Master extends Component {
       iconButton: {
         color: darkWhite,
       },
+      navDrawer: {
+          width:210
+      }
+      
     };
 
     if (this.props.width === MEDIUM || this.props.width === LARGE) {
@@ -110,6 +117,7 @@ class Master extends Component {
   }
 
   handleTouchTapLeftIconButton = () => {
+    // this.getStyles().navDrawer.width = 0
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen,
     });
@@ -124,7 +132,7 @@ class Master extends Component {
   handleChangeList = (event, value) => {
     this.context.router.push(value);
     this.setState({
-      navDrawerOpen: false,
+      navDrawerOpen: true,
     });
   };
 
@@ -153,7 +161,6 @@ class Master extends Component {
     const title =
       router.isActive('/get-started') ? 'Get Started' :
       router.isActive('/customization') ? 'Customization' :
-      router.isActive('/components') ? 'Components' :
       router.isActive('/discover-more') ? 'Discover More' : '';
 
     let docked = false;
@@ -161,9 +168,8 @@ class Master extends Component {
 
     if (this.props.width === LARGE && title !== '') {
       docked = true;
-      navDrawerOpen = true;
+    //   navDrawerOpen = true;
       showMenuIconButton = false;
-
       styles.navDrawer = {
         zIndex: styles.appBar.zIndex - 1,
       };
@@ -179,16 +185,21 @@ class Master extends Component {
             onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
             title={title}
             zDepth={0}
-            iconElementRight={
-                <IconButton
-                iconClassName="muidocs-icon-custom-github"
-                href="https://github.com/callemall/material-ui"
-                />
+            iconElementLeft={
+                <div className='AppBarContent'>
+                    <img src='images/logo.png' width="100" height="50" />
+                    <IconButton
+                    iconClassName="muidocs-icon-custom-github"
+                    href="https://github.com/callemall/material-ui"
+                    />
+                </div>
             }
+            iconStyleLeft={styles.appBarIconLeft}
             style={styles.appBar}
             showMenuIconButton={showMenuIconButton}
             />
         </div>
+
         <div  className='LayoutContent'>
             <div className='ContentLeft'>
                 <AppNavDrawer

@@ -2,4 +2,22 @@
     background-color: #F1F2F7;
     // border-radius: 20px;
     min-height: 1300px;
+    // display: flex;
+    // justify-content: space-between;
+    .ContentTop {
+        margin-top: 10px;
+        margin-right: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .Chart {
+        display: flex;
+        .ChartLeft {
+            flex: 6;
+        }
+        .ChartRight {
+            flex: 4;
+        }
+    }
 }
