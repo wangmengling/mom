@@ -4,6 +4,7 @@ import visibilityFilter from './VisibilityFilter'
 import appleBusket from './appleBuskReducer'
 import user from './user'
 import shop from './Shop'
+import udpReducer from './udpReducer'
 
 // const todoApp = combineReducers({
 //   todos,
@@ -14,9 +15,10 @@ import shop from './Shop'
 // })
 
 // export default todoApp
-module.exports = { 
+module.exports = {
   todos,
   visibilityFilter,
   appleBusket,
-  user
+  user,
+  udpReducer
  }

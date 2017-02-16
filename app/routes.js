@@ -10,6 +10,7 @@ import AdminLayout from './Containers/Admin/Layout';
 import AdminWelcome from './Containers/Admin/Welcome';
 import AdminShop from './Containers/Shop';
 import Foo from './Containers/Foo';
+import UDP from './Containers/Socket/udp';
 
 import NotFound from './containers/NotFound';
 
@@ -21,6 +22,9 @@ import { UserIsAuthenticated,UserIsNotAuthenticated} from './Utils/wrappers'
 export default ()=>{
   return (
     <Router>
+      <Route path="/socket">
+        <IndexRoute component={UDP} />
+      </Route>
       <Route path="/">
         <IndexRoute component={UserIsNotAuthenticated(Login)} />
       </Route>

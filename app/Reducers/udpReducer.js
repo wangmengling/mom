@@ -2,14 +2,16 @@ const defaultState = {
     // data:{username:"wangmengling"},
     data:JSON.parse(localStorage.getItem('token')) || null,
     // username:"wangmengling",
-    isLoading: false
+    // isLoading: false
 }
 
-const login = (state = defaultState, action) => {
+const udpReducer = (state = defaultState, action) => {
+    console.log(action.type)
   switch (action.type) {
-    case 'LOGIN_IN':
+    case 'udp/SEND_MESSAGE':
+        console.log({ data: action.payload, isLoading: false })
         return { ...state, isLoading: true };
-    case 'LOGIN_SUCCESS':
+    case 'udp/RECIVE_MESSAGE':
         console.log({ data: action.payload, isLoading: false })
         return { data: action.payload, isLoading: false };
     default:
@@ -17,4 +19,4 @@ const login = (state = defaultState, action) => {
   }
 }
 
-export default login
+export default udpReducer
