@@ -6,6 +6,7 @@ import axios from 'axios';
 
 // import udpSocket from './Socket/UdpSocket.js'
 import udpSocketChat from './Socket/UdpSocketChat.js'
+import tcpSocketClient from './Socket/TcpSocketClient.js'
 import tcpSocket from './Socket/TcpSocket.js'
 // import React from 'react';
 // import { renderToString } from 'react-dom/server';
@@ -62,8 +63,9 @@ app.get("/udp/sockets", function(req, res) {
   // udpSocketChat.send(message,0,message.length,48159,"localhost",function(err,bytes) {
   //
   // });
-  tcpSocket.write(massage);
-
+  // tcpSocket.write(massage);
+  // console.log(tcpSocket)
+  tcpSocketClient.write(message)
   // res.json({ user: 'tobi' })
 });
 
