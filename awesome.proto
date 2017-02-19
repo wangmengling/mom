@@ -1,0 +1,6 @@
+package awesomepackage;
+syntax = "proto3";
+
+message AwesomeMessage {
+    string awesome_field = 1; // becomes awesomeField ,特别要注意， 这里下划线后面在初始化的时候， 修改为大写，这里是个大坑. 只有string 类型才这样。
+}  

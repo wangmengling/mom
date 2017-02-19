@@ -24,6 +24,7 @@
     "normalize.css": "^5.0.0",
     "npm": "^3.10.8",
     "path": "^0.12.7",
+    "protobufjs": "^6.6.3",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-burger-menu": "^1.10.8",
