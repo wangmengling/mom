@@ -4,13 +4,15 @@ import path from 'path';
 
 import axios from 'axios';
 
-import pro from "./Socket/pro.js"
+// import pro from "./Socket/pro.js"
+
+var ProtoBuf = require("protobufjs");
 // import udpSocket from './Socket/UdpSocket.js'
 // import udpSocketClientPro from './Socket/UdpSocketClientPro.js'
 
 // import udpSocketChat from './Socket/UdpSocketChat.js'
 // import tcpSocketClient from './Socket/TcpSocketClient.js'
-// import tcpSocket from './Socket/TcpSocket.js'
+import tcpSocket from './Socket/TcpSocket.js'
 // import React from 'react';
 // import { renderToString } from 'react-dom/server';
 // import { RoutingContext, match } from 'react-router';
@@ -53,6 +55,53 @@ app.use(webpackHotMiddleware(compiler));
 //   res.sendFile(__dirname + '/static/index.html');
 // });
 
+
+var upload = require('./fileuploads');
+//文件上传服务
+app.post('/upload', upload.single('file'), function (req, res, next) {
+  // console.log(req.file);
+  // console.log(req);
+    if (req.file) {
+        res.send('文件上传成功')
+        console.log(req.file);
+        console.log(req.body);
+    }else {
+      res.send('失败')
+    }
+});
+
+app.get("/protobuf", function(req, res){
+  ProtoBuf.load("./Socket/awesome.proto", function(err, root) {
+      if (err) throw err;
+
+      // Obtain a message type
+      var AwesomeMessage = root.lookup("awesomepackage.AwesomeMessage");
+
+      // Create a new message
+      var message = AwesomeMessage.create({ awesomeField: "AwesomeString" });
+
+      // Encode a message to an Uint8Array (browser) or Buffer (node)
+      var buffer = AwesomeMessage.encode(message).finish();
+      // ... do something with buffer
+      console.log(buffer)
+      // Or, encode a plain object
+      var buffer = AwesomeMessage.encode({ awesomeField: "AwesomeString" }).finish();
+      // ... do something with buffer
+
+      // Decode an Uint8Array (browser) or Buffer (node) to a message
+      var message = AwesomeMessage.decode(buffer);
+
+      console.log(message)
+      // res.json(message)
+      res.send(buffer)
+
+      // ... do something with message
+
+      // If your application uses length-delimited buffers, there is also encodeDelimited and decodeDelimited.
+  });
+  // res.json({ user: 'tobi' })
+})
+
 app.get("/udp/sockets", function(req, res) {
   console.log(req.query.context)
   var message = new Buffer("send from client" + req.query.context);
@@ -69,7 +118,7 @@ app.get("/udp/sockets", function(req, res) {
   // tcpSocket.write(massage);
   // console.log(tcpSocket)
   tcpSocketClient.write(message)
-  // res.json({ user: 'tobi' })
+  res.json({ user: 'tobi' })
 });
 
 
