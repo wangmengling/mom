@@ -93,7 +93,7 @@ app.get("/protobuf", function(req, res){
 
       console.log(message)
       // res.json(message)
-      res.send(buffer)
+      res.send(message)
 
       // ... do something with message
 
