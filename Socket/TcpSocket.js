@@ -1,6 +1,6 @@
 var events = require('events');
 var net = require('net');
-var ProtoBuf = require("protobufjs");
+import protoBuf from '../proto/Protodef.js'
 
 // #设置
 var channel = new events.EventEmitter();
@@ -19,6 +19,7 @@ channel.on('join',function(id,client){
   this.subscriptions[id] = function(senderId,message){
     // #忽略发出这一广播数据的用户
     if(id != senderId){
+      console.log("==id"+id+"==="+senderId)
       this.clients[id].write(id +':'+ message);
     }
   }
@@ -52,42 +53,16 @@ var  tcpSocket = net.createServer(function(sock) {
     channel.emit('join',id,sock);
     // 为这个socket实例添加一个"data"事件处理函数
     sock.on('data', function(data) {
-        console.log('DATA ' + sock.remoteAddress + ': ' + data);
+
+        // console.log('DATA ' + sock.remoteAddress + ': ' + data);
         // 回发该数据，客户端将收到来自服务端的数据
         // data = data.toString();
-        if(data == "shutdown\r\n"){
-          channel.emit('shutdown');
-        }
+        // console.log('id-- ' + id)
+        // if(data == "shutdown\r\n"){
+        //   channel.emit('shutdown');
+        // }
         channel.emit('broadcast',id,data);
-
-
-        ProtoBuf.load("awesome.proto", function(err, root) {
-            if (err) throw err;
-
-            // Obtain a message type
-            var AwesomeMessage = root.lookup("awesomepackage.AwesomeMessage");
-
-            // Create a new message
-            var message = AwesomeMessage.create({ awesomeField: "AwesomeString" });
-
-            // Encode a message to an Uint8Array (browser) or Buffer (node)
-            var buffer = AwesomeMessage.encode(message).finish();
-            // // ... do something with buffer
-            //
-            // // Or, encode a plain object
-            // var buffer = AwesomeMessage.encode({ awesomeField: "AwesomeString" }).finish();
-            // // ... do something with buffer
-            //
-            // // Decode an Uint8Array (browser) or Buffer (node) to a message
-            // var message = AwesomeMessage.decode(buffer);
-
-            console.log(message)
-            // ... do something with message
-            // channel.emit('broadcast',id,buffer);
-            sock.write(buffer)
-            // If your application uses length-delimited buffers, there is also encodeDelimited and decodeDelimited.
-        });
-        sock.write("adfadfasdfasdf:AwesomeString-")
+        // sock.write(data)
     });
 
     // 为这个socket实例添加一个"close"事件处理函数
@@ -96,7 +71,15 @@ var  tcpSocket = net.createServer(function(sock) {
             sock.remoteAddress + ' ' + sock.remotePort);
         channel.emit('leave',id);
     });
+});
 
-}).listen(PORT, HOST);
+tcpSocket.on('listening', function () {
+    console.log('Tcp Server listening on ' + tcpSocket.remoteAddress + ":" + tcpSocket.remotePort);
+});
+
+tcpSocket.listen(PORT, () => {
+  console.log('服务器启动完毕TCP');
+});
+// .listen(PORT, HOST);
 
 export default  tcpSocket

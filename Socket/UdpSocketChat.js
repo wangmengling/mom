@@ -130,6 +130,10 @@ var beginTask = function () {
     tid = setTimeout(backgroundTask, 1000);
 };
 
+// server.on('listening', function () {
+//     var address = server.address();
+//     console.log('UDP Server listening on ' + address.address + ":" + address.port);
+// });
 
 server.on('message', function (msg, rinfo) {
     //注意msg为Buffer对象
