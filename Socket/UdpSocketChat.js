@@ -140,7 +140,7 @@ server.on('message', function (msg, rinfo) {
 
 
     console.log(msg.toString())
-
+    return
     var m = JSON.parse(msg.toString());
     console.log(m)
     return
@@ -152,7 +152,7 @@ server.on('message', function (msg, rinfo) {
     //发送消息
     sendMsg(m, rinfo);
 }).bind(8124, function () {
-    console.log('服务端启动成功');
+    console.log('服务端启动成功UDP');
     //当服务启动后,开启后台消息轮询服务
     beginTask();
 });
